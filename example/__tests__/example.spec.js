@@ -3,15 +3,15 @@ import { mount } from '@vue/test-utils'
 
 const WIDGET_ID = 'widgetId'
 
-function createMock () {
+function createMock() {
   return {
-    render: jest.fn(function (ele, options) {
+    render: jest.fn(function(ele, options) {
       // Save the callback
       this._verify = options.callback
       this._expire = options['expired-callback']
       return WIDGET_ID
     }),
-    execute: jest.fn(function () {
+    execute: jest.fn(function() {
       this._verify()
     }),
     reset: jest.fn()
@@ -20,17 +20,12 @@ function createMock () {
 
 describe('Example spec', () => {
   let wrapper
-  let verify
-  let expired
+
   beforeEach(() => {
     window.grecaptcha = createMock()
-    verify = jest.fn()
-    expired = jest.fn()
     wrapper = mount(VueRecaptcha, {
-      propsData: { sitekey: 'sitekey' }
+      props: { sitekey: 'sitekey' }
     })
-    wrapper.vm.$on('verify', verify)
-    wrapper.vm.$on('expired', expired)
   })
 
   it('Should render recaptcha', () => {
@@ -50,11 +45,11 @@ describe('Example spec', () => {
 
   it('Should emit verify', () => {
     window.grecaptcha._verify()
-    expect(verify).toBeCalled()
+    expect(wrapper.emitted('verify').length).toBe(1)
   })
 
   it('Should emit expired', () => {
     window.grecaptcha._expire()
-    expect(expired).toBeCalled()
+    expect(wrapper.emitted('expired').length).toBe(1)
   })
 })

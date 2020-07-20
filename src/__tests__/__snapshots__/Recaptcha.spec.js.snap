@@ -2,7 +2,6 @@
 
 exports[`Recaptcha Should render ReCAPTCHA: ReCAPTCHA options 1`] = `
 Object {
-  "badge": undefined,
   "callback": [Function],
   "error-callback": [Function],
   "expired-callback": [Function],
@@ -11,9 +10,5 @@ Object {
   "recaptchaHost": "www.google.com",
   "recaptchaScriptId": "__RECAPTCHA_SCRIPT",
   "sitekey": "sitekey",
-  "size": undefined,
-  "tabindex": undefined,
-  "theme": undefined,
-  "type": undefined,
 }
 `;

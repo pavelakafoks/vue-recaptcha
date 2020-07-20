@@ -21,7 +21,7 @@ const defer = () => {
   }
 
   const deferred = {
-    resolved () {
+    resolved() {
       return state
     },
     resolve,

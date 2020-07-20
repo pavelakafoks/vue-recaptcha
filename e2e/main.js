@@ -1,21 +1,19 @@
 /* global Vue: false, VueRecaptcha: false */
 
 // eslint-disable-next-line no-unused-vars
-function bootstrap (loadScript) {
-  // eslint-disable-next-line no-new
-  new Vue({
-    el: '#root',
-    data: {
+function bootstrap(loadScript) {
+  const app = Vue.createApp({
+    data: () => ({
       sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
       normalVerified: false,
       bindedVerified: false,
       invisibleVerified: false,
       loadScript
-    },
+    }),
     components: {
       VueRecaptcha
     },
-    mounted () {
+    mounted() {
       // If `loadRecaptchaScript` is not set to `true`, we'll need to load it manually
       if (!this.loadScript) {
         const $script = document.createElement('script')
@@ -26,18 +24,19 @@ function bootstrap (loadScript) {
       }
     },
     methods: {
-      onSubmit: function () {
+      onSubmit: function() {
         this.$refs.invisibleRecaptcha.execute()
       },
-      onNormalVerify () {
+      onNormalVerify() {
         this.normalVerified = true
       },
-      onBindedVerify () {
+      onBindedVerify() {
         this.bindedVerified = true
       },
-      onInvisibleVerify () {
+      onInvisibleVerify() {
         this.invisibleVerified = true
       }
     }
   })
+  app.mount('#root')
 }

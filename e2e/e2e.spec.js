@@ -1,5 +1,6 @@
-import { createServer } from 'http-server'
+import { createServer } from 'http'
 import { format } from 'util'
+import handler from 'serve-handler'
 import path from 'path'
 import puppeteer from 'puppeteer'
 
@@ -9,7 +10,7 @@ const URL = 'http://localhost:8080/e2e/index.html'
 
 let page
 
-function runE2ETest (script, loadScript) {
+function runE2ETest(script, loadScript) {
   describe(`with ${format({ script, loadScript })}`, () => {
     describe('Normal reCAPTCHA', () => {
       it('work', async () => {
@@ -72,18 +73,18 @@ describe('e2e', () => {
   runE2ETest('vue-recaptcha.min.js', true)
 
   beforeAll(() => {
-    // Setup http-server
+    // Setup http server & puppeteer
     return Promise.all([
       puppeteer
-        .launch()
+        .launch({ headless: false })
         .then(instance => {
           browser = instance
           return browser.newPage()
         })
         .then(x => (page = x)),
       new Promise(resolve => {
-        server = createServer({
-          root: path.resolve(__dirname, '..')
+        server = createServer((request, response) => {
+          return handler(request, response, { public: path.resolve(__dirname, '..') })
         })
 
         server.listen(8080, () => {

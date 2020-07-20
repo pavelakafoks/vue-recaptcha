@@ -1,7 +1,7 @@
 import recaptcha, { createRecaptcha } from '../recaptcha-wrapper'
 
 const WIDGET_ID = 'widgetId'
-function createMock () {
+function createMock() {
   return {
     render: jest.fn(() => WIDGET_ID),
     reset: jest.fn(),
