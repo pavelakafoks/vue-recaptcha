@@ -30,34 +30,6 @@
   "bugs": {
     "url": "https://github.com/DanSnow/vue-recaptcha/issues"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "{e2e,example,src}/**/*.js": [
-      "prettier-eslint --write",
-      "git add"
-    ]
-  },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "setupFilesAfterEnv": [
-      "jest-extended"
-    ],
-    "reporters": [
-      "default",
-      [
-        "jest-junit",
-        {
-          "output": "reports/jest/results.xml"
-        }
-      ]
-    ]
-  },
   "peerDependencies": {
     "vue": "^3.0.0"
   },
