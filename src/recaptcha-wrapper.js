@@ -48,7 +48,7 @@ export function createRecaptcha() {
       if (!deferred.resolved()) {
         throw new Error('ReCAPTCHA has not been loaded')
       }
-    }
+    },
   }
 }
 

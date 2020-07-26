@@ -7,45 +7,45 @@ export default defineComponent({
   props: {
     sitekey: {
       type: String,
-      required: true
+      required: true,
     },
     theme: {
-      type: String
+      type: String,
     },
     badge: {
-      type: String
+      type: String,
     },
     type: {
-      type: String
+      type: String,
     },
     size: {
-      type: String
+      type: String,
     },
     tabindex: {
-      type: String
+      type: String,
     },
     loadRecaptchaScript: {
       type: Boolean,
-      default: false
+      default: false,
     },
     recaptchaScriptId: {
       type: String,
-      default: '__RECAPTCHA_SCRIPT'
+      default: '__RECAPTCHA_SCRIPT',
     },
     recaptchaHost: {
       type: String,
-      default: 'www.google.com'
+      default: 'www.google.com',
     },
     language: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   setup(props, { slots, emit }) {
     const root = ref(null)
     const $widgetId = ref(null)
 
-    const emitVerify = response => {
+    const emitVerify = (response) => {
       emit('verify', response)
     }
     const emitExpired = () => {
@@ -75,11 +75,11 @@ export default defineComponent({
         ...props,
         callback: emitVerify,
         'expired-callback': emitExpired,
-        'error-callback': emitError
+        'error-callback': emitError,
       }
       const $root = unref(root)
       const container = slots.default ? $root.children[0] : $root
-      recaptcha.render(container, opts, id => {
+      recaptcha.render(container, opts, (id) => {
         $widgetId.value = id
         emit('render', id)
       })
@@ -93,10 +93,10 @@ export default defineComponent({
       },
       execute() {
         recaptcha.execute(unref($widgetId))
-      }
+      },
     }
   },
   render() {
     return h('div', { ref: 'root' }, this.$slots.default?.())
-  }
+  },
 })

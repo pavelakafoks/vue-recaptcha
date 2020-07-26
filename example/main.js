@@ -3,25 +3,25 @@
 
 const app = Vue.createApp({
   data: () => ({
-    sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+    sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
   }),
   components: {
-    'vue-recaptcha': VueRecaptcha
+    'vue-recaptcha': VueRecaptcha,
   },
   methods: {
-    onSubmit: function() {
+    onSubmit: function () {
       this.$refs.invisibleRecaptcha.execute()
     },
-    onVerify: function(response) {
+    onVerify: function (response) {
       console.log('Verify: ' + response)
     },
-    onExpired: function() {
+    onExpired: function () {
       console.log('Expired')
     },
     resetRecaptcha() {
       this.$refs.recaptcha.reset() // Direct call reset method
-    }
-  }
+    },
+  },
 })
 
 app.mount('#root')

@@ -6,7 +6,7 @@ import { mount } from '@vue/test-utils'
 jest.mock('../recaptcha-wrapper')
 
 const SITE_KEY = 'sitekey'
-const createWrapper = props => {
+const createWrapper = (props) => {
   return mount(Recaptcha, { props })
 }
 
@@ -44,7 +44,7 @@ describe('Recaptcha', () => {
     createWrapper({
       sitekey: SITE_KEY,
       loadRecaptchaScript: true,
-      recaptchaScriptId: id
+      recaptchaScriptId: id,
     })
     expect(document.getElementById(id)).not.toBe(null)
   })

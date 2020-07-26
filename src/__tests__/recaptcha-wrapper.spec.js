@@ -5,7 +5,7 @@ function createMock() {
   return {
     render: jest.fn(() => WIDGET_ID),
     reset: jest.fn(),
-    execute: jest.fn()
+    execute: jest.fn(),
   }
 }
 
@@ -96,7 +96,7 @@ describe('recaptcha', () => {
 
         ins.notify()
 
-        return ins.render(ele, { sitekey }, widgetId => {
+        return ins.render(ele, { sitekey }, (widgetId) => {
           expect(recaptchaMock.render).toBeCalled()
           expect(widgetId).toBe(WIDGET_ID)
         })

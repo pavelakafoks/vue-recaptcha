@@ -15,7 +15,7 @@ function runE2ETest(script, loadScript) {
     describe('Normal reCAPTCHA', () => {
       it('work', async () => {
         const frames = await page.frames()
-        const recaptchaFrame = frames.find(frame => frame.url().includes('anchor'))
+        const recaptchaFrame = frames.find((frame) => frame.url().includes('anchor'))
 
         const $recaptcha = await recaptchaFrame.$('.recaptcha-checkbox')
         expect($recaptcha).toBeTruthy()
@@ -46,7 +46,7 @@ function runE2ETest(script, loadScript) {
       await page.$eval(
         'body',
         ($el, script, loadScript) =>
-          new Promise(resolve => {
+          new Promise((resolve) => {
             const $script = document.createElement('script')
             $script.defer = true
             $script.src = `../dist/${script}`
@@ -79,14 +79,14 @@ describe('e2e', () => {
       puppeteer
         .launch({
           headless: false,
-          args: ['--disable-web-security', '--disable-features=IsolateOrigins,site-per-process']
+          args: ['--disable-web-security', '--disable-features=IsolateOrigins,site-per-process'],
         })
-        .then(instance => {
+        .then((instance) => {
           browser = instance
           return browser.newPage()
         })
-        .then(x => (page = x)),
-      new Promise(resolve => {
+        .then((x) => (page = x)),
+      new Promise((resolve) => {
         server = createServer((request, response) => {
           return handler(request, response, { public: path.resolve(__dirname, '..') })
         })
@@ -94,7 +94,7 @@ describe('e2e', () => {
         server.listen(8080, () => {
           resolve()
         })
-      })
+      }),
     ])
   })
 

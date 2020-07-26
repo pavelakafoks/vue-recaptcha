@@ -5,16 +5,16 @@ const WIDGET_ID = 'widgetId'
 
 function createMock() {
   return {
-    render: jest.fn(function(ele, options) {
+    render: jest.fn(function (ele, options) {
       // Save the callback
       this._verify = options.callback
       this._expire = options['expired-callback']
       return WIDGET_ID
     }),
-    execute: jest.fn(function() {
+    execute: jest.fn(function () {
       this._verify()
     }),
-    reset: jest.fn()
+    reset: jest.fn(),
   }
 }
 
@@ -24,7 +24,7 @@ describe('Example spec', () => {
   beforeEach(() => {
     window.grecaptcha = createMock()
     wrapper = mount(VueRecaptcha, {
-      props: { sitekey: 'sitekey' }
+      props: { sitekey: 'sitekey' },
     })
   })
 

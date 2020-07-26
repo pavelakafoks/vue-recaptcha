@@ -8,10 +8,10 @@ function bootstrap(loadScript) {
       normalVerified: false,
       bindedVerified: false,
       invisibleVerified: false,
-      loadScript
+      loadScript,
     }),
     components: {
-      VueRecaptcha
+      VueRecaptcha,
     },
     mounted() {
       // If `loadRecaptchaScript` is not set to `true`, we'll need to load it manually
@@ -24,7 +24,7 @@ function bootstrap(loadScript) {
       }
     },
     methods: {
-      onSubmit: function() {
+      onSubmit: function () {
         this.$refs.invisibleRecaptcha.execute()
       },
       onNormalVerify() {
@@ -35,8 +35,8 @@ function bootstrap(loadScript) {
       },
       onInvisibleVerify() {
         this.invisibleVerified = true
-      }
-    }
+      },
+    },
   })
   app.mount('#root')
 }
