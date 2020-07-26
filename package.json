@@ -6,8 +6,8 @@
   "module": "dist/vue-recaptcha.es.js",
   "main": "dist/vue-recaptcha.js",
   "scripts": {
-    "lint": "prettier-eslint --list-different \"${pwd}/{e2e,example,src}/**/*.js\" && eslint .",
-    "lint:fix": "prettier-eslint --write \"${pwd}/{e2e,example,src}/**/*.js\" && eslint --fix .",
+    "lint": "prettier --list-different \"{e2e,example,src}/**/*.js\" && eslint .",
+    "lint:fix": "prettier --write \"{e2e,example,src}/**/*.js\" && eslint --fix .",
     "build": "rollup -c",
     "test": "yarn lint && yarn test:unit && yarn test:types",
     "test:unit": "jest src",
