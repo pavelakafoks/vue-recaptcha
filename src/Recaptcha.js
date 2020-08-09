@@ -1,4 +1,4 @@
-import { defineComponent, h, onMounted, ref, unref } from 'vue'
+import { defineComponent, h, onMounted, ref } from 'vue'
 
 import recaptcha from './recaptcha-wrapper'
 
@@ -77,7 +77,7 @@ export default defineComponent({
         'expired-callback': emitExpired,
         'error-callback': emitError,
       }
-      const $root = unref(root)
+      const $root = root.value
       const container = slots.default ? $root.children[0] : $root
       recaptcha.render(container, opts, (id) => {
         $widgetId.value = id
@@ -89,10 +89,10 @@ export default defineComponent({
       root,
       $widgetId,
       reset() {
-        recaptcha.reset(unref($widgetId))
+        recaptcha.reset($widgetId.value)
       },
       execute() {
-        recaptcha.execute(unref($widgetId))
+        recaptcha.execute($widgetId.value)
       },
     }
   },
